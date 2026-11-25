@@ -41,7 +41,7 @@ export function FollowUpList({ rows, timeZone, canEdit, showParent = false, empt
         const parent = f.lead ? { href: `/crm/leads/${f.lead.id}`, ...f.lead } : f.contact ? { href: `/crm/contacts/${f.contact.id}`, ...f.contact } : null;
         return (
           <li key={f.id} className="flex flex-wrap items-start justify-between gap-3 py-3">
-            <div className="min-w-0 flex-1 space-y-1">
+            <div className="min-w-0 flex-1 basis-56 space-y-1">
               <p className={state === "done" || state === "cancelled" ? "font-medium text-muted line-through" : "font-medium"}>{f.title}</p>
               <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
                 <Badge tone="navy">{FOLLOW_UP_KIND_LABELS[f.kind]}</Badge>

@@ -25,7 +25,7 @@ export function SearchBox() {
   return (
     <form
       role="search"
-      className="crm-glass order-last flex h-12 w-full min-w-0 items-center gap-3 rounded-2xl px-4 shadow-soft sm:order-none sm:w-auto sm:flex-1 md:max-w-md"
+      className="crm-glass order-last -ml-14 flex h-12 w-[calc(100%+3.5rem)] min-w-0 items-center gap-3 rounded-2xl px-4 shadow-soft sm:order-none sm:ml-0 sm:w-auto sm:flex-1 md:max-w-md"
       onSubmit={(e) => {
         e.preventDefault();
         const q = ref.current?.value.trim();
