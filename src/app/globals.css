@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+/* dark: follows a data-theme pin when present, otherwise the OS setting. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:not([data-theme="light"], [data-theme="light"] *)) {
+      @slot;
+    }
+  }
+}
+
+/*
+ * Zee Telephonics design tokens, shared with the website (src/styles/global.css there):
+ * midnight navy #0A1630, electric cyan #00D4FF (on dark), cyan #007A99 (readable on white),
+ * signal blue #1E5EFF, white. Layout and components follow the Business Care CRM.
+ */
+:root {
+  --zt-navy: #0a1630;
+  --zt-navy-800: #12244d;
+  --zt-navy-700: #1a3266;
+  --zt-blue: #1e5eff;
+  --zt-cyan: #00d4ff;
+  --zt-cyan-700: #007a99;
+
+  --background: #f2f6fb;
+  --surface: #ffffff;
+  --surface-muted: #eef3f9;
+  --foreground: #0f1b33;
+  --muted: #46546b;
+  --border: #dbe4f0;
+  --ring: #007a99;
+  --primary: var(--zt-navy);
+  --primary-foreground: #ffffff;
+  --accent: var(--zt-cyan);
+  --accent-foreground: var(--zt-navy);
+  --accent-text: var(--zt-cyan-700);
+  --danger: #b42318;
+  --danger-surface: #fef3f2;
+  --success: #067647;
+  --success-surface: #ecfdf3;
+  --warning: #93370d;
+  --warning-surface: #fffaeb;
+  --shadow-color: 10 22 48;
+  --glass: rgb(255 255 255 / 0.66);
+  --glass-strong: rgb(255 255 255 / 0.88);
+  --glass-border: rgb(255 255 255 / 0.75);
+  --crm-bg: radial-gradient(1100px 700px at 0% 0%, rgb(0 212 255 / 0.16), transparent 60%),
+    radial-gradient(1000px 900px at 100% 10%, rgb(30 94 255 / 0.12), transparent 60%),
+    linear-gradient(160deg, #f6f9fd, #eef4fb 55%, #e6f1f8);
+}
+
+/* The CRM can pin a theme with data-theme on the shell. */
+[data-theme="light"] {
+  --background: #f2f6fb;
+  --surface: #ffffff;
+  --surface-muted: #eef3f9;
+  --foreground: #0f1b33;
+  --muted: #46546b;
+  --border: #dbe4f0;
+  --ring: #007a99;
+  --primary: var(--zt-navy);
+  --primary-foreground: #ffffff;
+  --accent-text: var(--zt-cyan-700);
+  --danger: #b42318;
+  --danger-surface: #fef3f2;
+  --success: #067647;
+  --success-surface: #ecfdf3;
+  --warning: #93370d;
+  --warning-surface: #fffaeb;
+  --shadow-color: 10 22 48;
+  --glass: rgb(255 255 255 / 0.66);
+  --glass-strong: rgb(255 255 255 / 0.88);
+  --glass-border: rgb(255 255 255 / 0.75);
+  --crm-bg: radial-gradient(1100px 700px at 0% 0%, rgb(0 212 255 / 0.16), transparent 60%),
+    radial-gradient(1000px 900px at 100% 10%, rgb(30 94 255 / 0.12), transparent 60%),
+    linear-gradient(160deg, #f6f9fd, #eef4fb 55%, #e6f1f8);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0a1630;
+    --surface: #0f1f40;
+    --surface-muted: #14284f;
+    --foreground: #eef3fb;
+    --muted: #b4c3dc;
+    --border: #22385e;
+    --ring: #00d4ff;
+    --primary: #00d4ff;
+    --primary-foreground: #0a1630;
+    --accent-text: #5fe3ff;
+    --danger: #ff8a7a;
+    --danger-surface: #3a1210;
+    --success: #6ce9a6;
+    --success-surface: #0f2e1a;
+    --warning: #fec84b;
+    --warning-surface: #3a2a0a;
+    --shadow-color: 0 0 0;
+    --glass: rgb(15 31 64 / 0.66);
+    --glass-strong: rgb(15 31 64 / 0.86);
+    --glass-border: rgb(255 255 255 / 0.08);
+    --crm-bg: radial-gradient(1200px 700px at 0% 0%, rgb(0 212 255 / 0.12), transparent 60%),
+      radial-gradient(1000px 800px at 100% 20%, rgb(30 94 255 / 0.16), transparent 60%),
+      linear-gradient(160deg, #081227, #0a1630 55%, #0d1d3d);
+  }
+}
+[data-theme="dark"] {
+  --background: #0a1630;
+  --surface: #0f1f40;
+  --surface-muted: #14284f;
+  --foreground: #eef3fb;
+  --muted: #b4c3dc;
+  --border: #22385e;
+  --ring: #00d4ff;
+  --primary: #00d4ff;
+  --primary-foreground: #0a1630;
+  --accent-text: #5fe3ff;
+  --danger: #ff8a7a;
+  --danger-surface: #3a1210;
+  --success: #6ce9a6;
+  --success-surface: #0f2e1a;
+  --warning: #fec84b;
+  --warning-surface: #3a2a0a;
+  --shadow-color: 0 0 0;
+  --glass: rgb(15 31 64 / 0.66);
+  --glass-strong: rgb(15 31 64 / 0.86);
+  --glass-border: rgb(255 255 255 / 0.08);
+  --crm-bg: radial-gradient(1200px 700px at 0% 0%, rgb(0 212 255 / 0.12), transparent 60%),
+    radial-gradient(1000px 800px at 100% 20%, rgb(30 94 255 / 0.16), transparent 60%),
+    linear-gradient(160deg, #081227, #0a1630 55%, #0d1d3d);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
+  --color-danger: var(--danger);
+  --color-danger-surface: var(--danger-surface);
+  --color-success: var(--success);
+  --color-success-surface: var(--success-surface);
+  --color-warning: var(--warning);
+  --color-warning-surface: var(--warning-surface);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+  --color-glass-border: var(--glass-border);
+  --color-navy: var(--zt-navy);
+  --color-brand-cyan: var(--zt-cyan);
+  --color-brand-cyan-700: var(--zt-cyan-700);
+  --color-brand-blue: var(--zt-blue);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --shadow-soft: 0 1px 2px rgb(var(--shadow-color) / 0.06), 0 8px 24px -8px rgb(var(--shadow-color) / 0.14);
+  --shadow-lift: 0 2px 4px rgb(var(--shadow-color) / 0.06), 0 20px 40px -12px rgb(var(--shadow-color) / 0.22);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* CRM shell: soft brand gradient with frosted panels. */
+.crm-shell {
+  background: var(--crm-bg);
+  background-attachment: fixed;
+  color: var(--foreground);
+}
+.crm-glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
+}
+
+/* Grid tracks may hold wide tables; let them shrink and scroll instead of widening the page. */
+.crm-shell main .grid > * {
+  min-width: 0;
+}
