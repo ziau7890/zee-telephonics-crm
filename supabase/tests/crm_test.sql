@@ -232,7 +232,17 @@ begin
   exception when others then
     if sqlerrm = 'anon called intake' then raise; end if;
   end;
-  assert (select count(*) from public.leads) = 0, 'anon can read leads';
+  -- anon has no table or helper access at all (migration ...100004).
+  begin
+    perform count(*) from public.leads;
+    raise exception 'anon can read leads';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.has_permission('leads', 'view', gen_random_uuid());
+    raise exception 'anon can call permission helpers';
+  exception when insufficient_privilege then null;
+  end;
 end $$;
 reset role;
 
